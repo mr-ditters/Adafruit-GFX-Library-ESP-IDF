@@ -8,6 +8,7 @@ It was not a light task since is developed to work with Arduino framwork. That's
 	WString.cpp
 	WString.h
 
+This is currently used in my project [Cale-idf](https://github.com/martinberlin/cale-idf) and the [ESP-IDF epaper component](https://github.com/martinberlin/CalEPD).
 If someone knows C++ OOP better than me maybe is a better way to implement this without this libraries. The good thing is that this is working and might be a good start if you want to use fonts or geometric functions in ESP-IDF like drawCircle, drawPixel, etc.
 To implement print / println after extending Adafruit GFX you should add this functions. Eg. in an epaper driver implementation
    // epd.h
@@ -69,3 +70,8 @@ Recent Arduino IDE releases include the Library Manager for easy installation. O
 - 'Fonts' folder contains bitmap fonts for use with recent (1.1 and later) Adafruit_GFX. To use a font in your Arduino sketch, #include the corresponding .h file and pass address of GFXfont struct to setFont(). Pass NULL to revert to 'classic' fixed-space bitmap font.
 
 - 'fontconvert' folder contains a command-line tool for converting TTF fonts to Adafruit_GFX .h format.
+	
+## Related projects
+	
+- [Cale-idf](https://github.com/martinberlin/cale-idf)
+- [CalEPD](https://github.com/martinberlin/CalEPD) the eink component for the ESP32 Espressif IDF framework
