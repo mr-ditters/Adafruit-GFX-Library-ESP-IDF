@@ -222,7 +222,8 @@ String & String::copy(const __FlashStringHelper *pstr, unsigned int length) {
         return *this;
     }
     setLen(length);
-    memcpy_P(wbuffer(), (PGM_P)pstr, length + 1); // We know wbuffer() cannot ever be in PROGMEM, so memcpy safe here
+    memcpy(wbuffer(), pstr, length + 1);
+    
     return *this;
 }
 
@@ -294,7 +295,7 @@ String & String::operator =(const char *cstr) {
 
 String & String::operator = (const __FlashStringHelper *pstr)
 {
-    if (pstr) copy(pstr, strlen_P((PGM_P)pstr));
+    if (pstr) copy(pstr, strlen((const char *)pstr));
     else invalidate();
 
     return *this;
@@ -337,7 +338,7 @@ unsigned char String::concat(const char *cstr, unsigned int length) {
         memmove(wbuffer() + len(), cstr, length + 1);
     else
         // compatible with source in flash #6367
-        memcpy_P(wbuffer() + len(), cstr, length + 1);
+        memcpy(wbuffer() + len(), cstr, length + 1);
     setLen(newlen);
     return 1;
 }
@@ -399,11 +400,11 @@ unsigned char String::concat(double num) {
 
 unsigned char String::concat(const __FlashStringHelper * str) {
     if (!str) return 0;
-    int length = strlen_P((PGM_P)str);
+    int length = strlen((const char *)str);
     if (length == 0) return 1;
     unsigned int newlen = len() + length;
     if (!reserve(newlen)) return 0;
-    memcpy_P(wbuffer() + len(), (PGM_P)str, length + 1);
+    memcpy(wbuffer() + len(), str, length + 1);
     setLen(newlen);
     return 1;
 }
