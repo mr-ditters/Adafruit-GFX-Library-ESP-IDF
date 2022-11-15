@@ -5,8 +5,8 @@
 #define FONT5X7_H
 
 // Standard ASCII 5x7 font
-
-static const unsigned char font[] = {
+// Removing static because glcdfont.c:11:28: error: 'font' defined but not used [-Werror=unused-const-variable] (When build in platformio)
+const unsigned char font[] = {
 	0x00, 0x00, 0x00, 0x00, 0x00,
 	0x3E, 0x5B, 0x4F, 0x5B, 0x3E,
 	0x3E, 0x6B, 0x4F, 0x6B, 0x3E,
